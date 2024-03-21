@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Kenny Clicker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1 {
+            font-family: monospace
+        }
+        body {
+            
+            
+            text-align: center;
+            font-family: monospace;
+            background-image: url('content/southpark2.jpg'); 
+            background-color: gray;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #score {
+            font-size: 28px;
+            margin-bottom: 0px;
+        }
+
+        #kenny {
+            width: 250px;
+            height: auto;
+            cursor: crosshair;
+            margin-top: 60px;
+        }
+        
+        /* CSS */
+        @keyframes kennyAnimation {
+            0% {transform: scale(1);}
+            70% {transform: scale(0.7);}
+            100% {transform: scale(1);}
+        }
+        
+        /* kenny animation klasse */
+        .kennyAnimation {
+            animation: kennyAnimation 0.2s; 
+        }
+         
+        .shake {
+            animation: shake 1s;
+        }
+        @keyframes shake {
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Haue Kenny um Punkte zu sammeln</h1>
+    <p id="score">Punkte: <span id="scoreValue">0</span></p>
+    <img id="kenny" src="content/kenny2.png" alt="OMG, they killed Kenny!">
+    
+
+    <script>                        /* kenny animation */
+        let score = 0;
+        
+        function kennyAnimation() {
+            const kenny = document.getElementById('kenny');
+            kenny.classList.remove('kennyAnimation');
+            void kenny.offsetWidth;
+            kenny.classList.add('kennyAnimation'); 
+        }
+        
+        function updateScore() {
+            document.getElementById('scoreValue').textContent = score;
+        }
+        
+        function mouseClick() {
+            score++;
+            updateScore();
+            kennyAnimation();
+        }
+    
+        function startGame() {
+            document.getElementById('kenny').addEventListener('click', mouseClick);
+        }
+        
+        
+        startGame();
+    </script>
+    </body>
+ </html>
